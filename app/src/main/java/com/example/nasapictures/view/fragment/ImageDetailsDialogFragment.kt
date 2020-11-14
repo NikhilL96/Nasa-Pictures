@@ -1,16 +1,15 @@
-package com.example.nasapictures.views.fragment
+package com.example.nasapictures.view.fragment
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.example.nasapictures.R
 import com.example.nasapictures.model.ImageDetailsModel
+import com.example.nasapictures.viewmodel.ImageDetailsActivityViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.layout_image_details.*
 
@@ -21,7 +20,7 @@ class ImageDetailsDialogFragment : BottomSheetDialogFragment() {
         fun newInstance(imageDetails: ImageDetailsModel): ImageDetailsDialogFragment {
             return ImageDetailsDialogFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(IMAGE_DETAILS_KEY, imageDetails)
+
                 }
             }
         }
@@ -36,11 +35,14 @@ class ImageDetailsDialogFragment : BottomSheetDialogFragment() {
     private lateinit var backButton: ImageView
 
     private var imageDetails: ImageDetailsModel? = null
+    private lateinit var viewModel: ImageDetailsActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getBundledData()
-
+        activity?.let{
+            viewModel = ViewModelProvider(it).get(ImageDetailsActivityViewModel::class.java)
+            imageDetails = viewModel.getSelectedImageDetails()
+        }
     }
 
     override fun onCreateView(
@@ -54,11 +56,6 @@ class ImageDetailsDialogFragment : BottomSheetDialogFragment() {
         )
     }
 
-    private fun getBundledData() {
-        arguments?.let{
-            imageDetails = it.getParcelable<ImageDetailsModel>(IMAGE_DETAILS_KEY)
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

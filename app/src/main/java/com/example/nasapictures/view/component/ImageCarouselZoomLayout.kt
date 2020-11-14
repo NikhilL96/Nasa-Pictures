@@ -1,4 +1,4 @@
-package com.example.nasapictures.views.component
+package com.example.nasapictures.view.component
 
 import android.content.Context
 import android.util.AttributeSet

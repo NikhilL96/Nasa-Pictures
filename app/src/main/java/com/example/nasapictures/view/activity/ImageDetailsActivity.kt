@@ -1,4 +1,4 @@
-package com.example.nasapictures.views.activity
+package com.example.nasapictures.view.activity
 
 import android.os.Build
 import android.os.Bundle
@@ -15,9 +15,9 @@ import com.example.nasapictures.extensions.appearWithAnimation
 import com.example.nasapictures.extensions.hideWithAnimation
 import com.example.nasapictures.model.ImageDetailsModel
 import com.example.nasapictures.viewmodel.ImageDetailsActivityViewModel
-import com.example.nasapictures.views.adapter.ImageCarouselAdapter
-import com.example.nasapictures.views.component.SnapOnScrollListener
-import com.example.nasapictures.views.fragment.ImageDetailsDialogFragment
+import com.example.nasapictures.view.adapter.ImageCarouselAdapter
+import com.example.nasapictures.view.component.SnapOnScrollListener
+import com.example.nasapictures.view.fragment.ImageDetailsDialogFragment
 import kotlinx.android.synthetic.main.activity_image_details.*
 
 class ImageDetailsActivity : TemplateActivity(), SnapOnScrollListener.OnSnapPositionChangeListener {
@@ -33,7 +33,6 @@ class ImageDetailsActivity : TemplateActivity(), SnapOnScrollListener.OnSnapPosi
     private lateinit var exitActivityButton: ImageView
     private lateinit var imageInfoButton: ImageView
     private lateinit var viewModel: ImageDetailsActivityViewModel
-    private var visibleImagePosition = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_details)
@@ -70,7 +69,7 @@ class ImageDetailsActivity : TemplateActivity(), SnapOnScrollListener.OnSnapPosi
             finish()
         }
         imageInfoButton.setOnClickListener {
-            viewModel.imagesDataSet.getOrNull(visibleImagePosition)?.let{
+            viewModel.imagesDataSet.getOrNull(viewModel.selectedPosition)?.let{
                 val fragment = ImageDetailsDialogFragment.newInstance(it)
                 if (!fragment.isAdded)
                     fragment.show(supportFragmentManager, "transaction_summary_fragment")
@@ -128,7 +127,7 @@ class ImageDetailsActivity : TemplateActivity(), SnapOnScrollListener.OnSnapPosi
     }
 
     private fun updateImageCountTextView(position: Int) {
-        visibleImagePosition = position
+        viewModel.selectedPosition = position
         imageCountText.text = getString(R.string.image_carousel_count, position + 1,
             viewModel.imagesDataSet.size)
     }

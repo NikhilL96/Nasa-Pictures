@@ -1,26 +1,16 @@
-package com.example.nasapictures.views.adapter
+package com.example.nasapictures.view.adapter
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.os.AsyncTask
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.nasapictures.R
 import com.example.nasapictures.extensions.loadFromUrl
 import com.example.nasapictures.model.ImageDetailsModel
-import java.io.InputStream
-import java.net.URL
 
 
 class ImagesGridAdapter(
@@ -45,7 +35,6 @@ class ImagesGridAdapter(
 
     override fun onBindViewHolder(holder: ImagesGridViewHolder, position: Int) {
         holder.bind()
-//        holder.setIsRecyclable(false)
     }
 
 
@@ -53,7 +42,6 @@ class ImagesGridAdapter(
 
         private val titleTv: TextView = itemView.findViewById(R.id.image_grid_item_title)
         private val image: ImageView = itemView.findViewById(R.id.images_grid_item_image_view)
-        private val imageSelectableView: View = itemView.findViewById(R.id.image_clickable_view)
         private val loader: ProgressBar = itemView.findViewById(R.id.images_grid_item_loader)
         private val imageDetails: ImageDetailsModel?
         get() {
@@ -61,7 +49,7 @@ class ImagesGridAdapter(
         }
 
         init {
-            imageSelectableView.setOnClickListener {
+            itemView.setOnClickListener {
                 onImageClick(adapterPosition)
             }
         }

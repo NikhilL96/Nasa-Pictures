@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.activity.ImagesGridActivity">
+    tools:context=".view.activity.ImagesGridActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/image_list_recycler_view"

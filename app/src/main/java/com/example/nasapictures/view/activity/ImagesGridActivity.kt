@@ -1,28 +1,29 @@
-package com.example.nasapictures.views.activity
+package com.example.nasapictures.view.activity
 
-import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.nasapictures.R
 import com.example.nasapictures.router.ImagesGridRouter
 import com.example.nasapictures.viewmodel.ImagesGridActivityViewModel
-import com.example.nasapictures.views.adapter.ImagesGridAdapter
+import com.example.nasapictures.view.adapter.ImagesGridAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_images_list.*
 import java.lang.ref.WeakReference
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ImagesGridActivity : TemplateActivity() {
 
     private lateinit var imagesListRecyclerView: RecyclerView
     private lateinit var imagesListAdapter: ImagesGridAdapter
-    private lateinit var viewModel: ImagesGridActivityViewModel
-    private val router = ImagesGridRouter(WeakReference(this))
+    private val viewModel: ImagesGridActivityViewModel by viewModels()
+    @Inject lateinit var router: ImagesGridRouter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_images_list)
-
-        viewModel = ViewModelProvider(this).get(ImagesGridActivityViewModel::class.java)
         setupUI()
     }
 

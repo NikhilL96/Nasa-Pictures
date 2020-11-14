@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
-    <com.example.nasapictures.views.component.ImageCarouselZoomLayout
+    <com.example.nasapictures.view.component.ImageCarouselZoomLayout
         android:id="@+id/zoom_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +17,7 @@
             android:scaleType="fitCenter"
             android:layout_margin="@dimen/vertical_margin"/>
 
-    </com.example.nasapictures.views.component.ImageCarouselZoomLayout>
+    </com.example.nasapictures.view.component.ImageCarouselZoomLayout>
     <ProgressBar
         android:id="@+id/image_carousel_loader"
         android:layout_width="wrap_content"

@@ -1,4 +1,4 @@
-package com.example.nasapictures.views.activity
+package com.example.nasapictures.view.activity
 
 import android.os.Bundle
 import android.os.PersistableBundle

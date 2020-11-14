@@ -7,7 +7,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="@dimen/vertical_margin"
     app:cardCornerRadius="4dp"
-    app:elevation="4dp">
+    app:elevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:descendantFocusability="blocksDescendants"
+    android:foreground="?attr/selectableItemBackground"
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,19 +26,8 @@
             android:scaleType="center"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <View
-            android:id="@+id/image_clickable_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            />
 
         <ProgressBar
             android:id="@+id/images_grid_item_loader"

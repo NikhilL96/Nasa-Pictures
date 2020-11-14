@@ -1,4 +1,4 @@
-package com.example.nasapictures.views.adapter
+package com.example.nasapictures.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nasapictures.R
 import com.example.nasapictures.extensions.loadFromUrl
 import com.example.nasapictures.model.ImageDetailsModel
-import com.example.nasapictures.views.component.ImageCarouselZoomLayout
+import com.example.nasapictures.view.component.ImageCarouselZoomLayout
 
 class ImageCarouselAdapter (
     private val context: Context,

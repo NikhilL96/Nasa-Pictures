@@ -1,21 +1,28 @@
 package com.example.nasapictures.interactor
 
+import android.app.Application
 import android.content.Context
 import com.example.nasapictures.model.ImageDetailsModel
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
+import dagger.hilt.android.qualifiers.ActivityContext
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.android.scopes.ActivityScoped
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.StringWriter
 import java.lang.Exception
+import javax.inject.Inject
 
-interface ImagesGridInput {
+@ActivityRetainedScoped
+interface ImagesGridInteractor {
     fun getImagesList(): MutableList<ImageDetailsModel>?
 }
 
-
-class ImagesGridInteractor(private val context: Context): ImagesGridInput {
+@ActivityRetainedScoped
+class ImagesGridInteractorImpl @Inject constructor(@ApplicationContext private val context: Context): ImagesGridInteractor {
 
     override fun getImagesList(): MutableList<ImageDetailsModel>? {
         val moshi = Moshi.Builder().build()

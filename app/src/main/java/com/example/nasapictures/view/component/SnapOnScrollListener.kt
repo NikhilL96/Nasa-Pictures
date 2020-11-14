@@ -1,4 +1,4 @@
-package com.example.nasapictures.views.component
+package com.example.nasapictures.view.component
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
