@@ -32,4 +32,5 @@ class ImagesGridActivityViewModel @ViewModelInject constructor(val interactor: I
         })
         imagesList
     }
+
 }

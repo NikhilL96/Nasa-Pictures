@@ -18,6 +18,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.nasapictures.view.activity.ImageDetailsActivity
 import com.example.nasapictures.view.activity.ImagesGridActivity
+import com.example.nasapictures.view.adapter.ImageCarouselAdapter
 import com.example.nasapictures.view.adapter.ImagesGridAdapter
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -60,15 +61,26 @@ class AppTest {
 
         // Check if items are present
         Espresso.onView(withId(R.id.image_list_recycler_view))
-            .check(RecyclerViewItemCountAssertion(26))
+            .check(RecyclerViewItemCountAssertion(20))
 
-        for (index in 0 until 26) {
+        //check clicking on an image for first 10 items
+        for (index in 0 until 10) {
             Espresso.onView(withId(R.id.image_list_recycler_view))
                 .perform(RecyclerViewActions.actionOnItemAtPosition<ImagesGridAdapter.ImagesGridViewHolder>(index, ViewActions.click()))
             Espresso.onView(withId(R.id.image_count_tv)).check(matches(withText("${index+1} / 26")))
             Espresso.onView(withId(R.id.exit_image_details_button)).perform(ViewActions.click())
-
         }
+
+        Espresso.onView(withId(R.id.image_list_recycler_view))
+            .perform(RecyclerViewActions.actionOnItemAtPosition<ImagesGridAdapter.ImagesGridViewHolder>(10, ViewActions.click()))
+
+        //check scrolling on images for next 10 items
+        for (index in 10 until 20) {
+            Espresso.onView(withId(R.id.image_count_tv)).check(matches(withText("${index+1} / 26")))
+            Espresso.onView(withId(R.id.image_carousel_recycler_view))
+                .perform(RecyclerViewActions.scrollToPosition<ImageCarouselAdapter.ImageCarouselViewHolder>(index+1))
+        }
+
     }
 }
 
