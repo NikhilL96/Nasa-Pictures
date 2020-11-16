@@ -48,7 +48,7 @@ class ExampleUnitTest {
                 val nextImageDate = DateUtils.getDate(it.date,
                     ImagesGridActivityViewModel.DATE_FORMAT
                 )
-                if(nextImageDate?.compareTo(currentImageDate) != 1)
+                if(currentImageDate?.compareTo(nextImageDate) == -1)  //should be greater or equal
                     return false
             }
         }

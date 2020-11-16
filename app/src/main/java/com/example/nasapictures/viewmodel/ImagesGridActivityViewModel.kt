@@ -28,7 +28,7 @@ class ImagesGridActivityViewModel @ViewModelInject constructor(val interactor: I
         imagesList?.sortWith(Comparator { image1, image2 ->
             val image1Date = DateUtils.getDate(image1.date, DATE_FORMAT)
             val image2Date = DateUtils.getDate(image2.date, DATE_FORMAT)
-            image1Date?.compareTo(image2Date) ?:0
+            image2Date?.compareTo(image1Date) ?:0
         })
         imagesList
     }
